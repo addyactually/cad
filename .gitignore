@@ -3,6 +3,9 @@
 *.FCStd1
 *.FCStd.lock
 
+# Generated exports (STL, STEP, ...); rebuild them with each project's export script
+projects/*/exports/
+
 # Python
 __pycache__/
 *.pyc

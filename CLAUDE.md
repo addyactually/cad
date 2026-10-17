@@ -20,7 +20,7 @@ projects/              one folder per CAD project
     <project-name>.FCStd   the FreeCAD model
     NOTES.md               goal, requirements, parameters, decisions
     scripts/               Python that builds or modifies the model
-    exports/               STEP, STL, DXF, PDF outputs
+    exports/               STEP, STL, DXF, PDF outputs (not committed)
     references/            sketches, datasheets, photos, drawings
 templates/project/     starting skeleton for a new project
 lib/                   Python helpers shared across projects
@@ -67,6 +67,8 @@ lib/                   Python helpers shared across projects
 ## Exports
 
 - Write exports to `projects/<project-name>/exports/`, named `<project-name>[-<part>].<ext>`.
+- Exports are generated files and are not committed (`.gitignore` excludes `projects/*/exports/`).
+  Keep each project's export script up to date so they can be regenerated.
 - STEP for CAD exchange, STL (or 3MF) for 3D printing, DXF for laser cutting or 2D drawings.
 
 ## Shared code

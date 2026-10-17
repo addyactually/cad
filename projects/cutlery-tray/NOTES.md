@@ -134,6 +134,9 @@ Stored in the `Params` spreadsheet in `cutlery-tray.FCStd`. Edit them there and 
 
 ## Exports
 
+Not committed to Git. Run `scripts/build_tray.py` then `scripts/export_tray.py` in FreeCAD to
+regenerate them.
+
 | File | Format | Purpose |
 | ---- | ------ | ------- |
 | exports/cutlery-tray-<bin>.stl | STL | One per bin, ten in total, placed at the origin |
