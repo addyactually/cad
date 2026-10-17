@@ -1,0 +1,17 @@
+# FreeCAD backup and lock files
+*.FCBak
+*.FCStd1
+*.FCStd.lock
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Claude files (kept local, never committed)
+CLAUDE.md
+.claude/
