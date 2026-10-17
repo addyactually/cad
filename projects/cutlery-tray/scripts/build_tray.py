@@ -47,7 +47,6 @@ DEFAULTS = [  # alias, value, description
     ("bed_max", 250, "Usable bed size; longer bins print diagonally"),
     ("front_bezel", 10, "Front wall (bezel) thickness of the front bins"),
     ("back_bezel", 10, "Back wall (bezel) thickness of the back bins"),
-    ("outer_w", 60, "Inside width of the two outer columns"),
     ("knife_l", 230, "Longest knife"),
     ("spoon_l", 200, "Longest spoon or fork"),
     ("teaspoon_l", 150, "Longest teaspoon"),
@@ -75,11 +74,11 @@ def column(*bins, width=None):
 
 
 COLUMNS = [
-    column(bin_("Knives", fits="knife_l"), bin_("Small items"), width="outer_w"),
+    column(bin_("Knives", fits="knife_l"), bin_("Small items")),
     column(bin_("Forks", fits="spoon_l"), bin_("Teaspoons", fits="teaspoon_l")),
     column(bin_("Spoons", fits="spoon_l"), bin_("Spare")),
     column(bin_("Soup spoons", fits="spoon_l"), bin_("Misc")),
-    column(bin_("Chopsticks", fits="chopstick_l"), bin_("Odds and ends"), width="outer_w"),
+    column(bin_("Chopsticks", fits="chopstick_l"), bin_("Odds and ends")),
 ]
 
 # Mirror the layout left to right: each bin is made as long as the bin in the same place in the

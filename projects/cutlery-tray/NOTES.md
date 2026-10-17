@@ -26,16 +26,16 @@ of, like a standard moulded home cutlery tray.
 Every compartment is its own bin, printed separately and sized to its item. The bins sit side by
 side in five columns and are held to their neighbours by magnets. Each column has a front bin
 that is just long enough for its item and a back bin that takes the remaining depth. The layout
-is mirrored left to right (`SYMMETRIC`): mirrored columns share a width, and each front bin is
-as long as its mirror twin needs, so every join lines up symmetrically.
+is mirrored left to right (`SYMMETRIC`): all five columns are the same width, and each front
+bin is as long as its mirror twin needs, so every join lines up symmetrically.
 
 | Column | Front bin (outside / inside, mm) | Back bin (outside / inside, mm) |
 | ------ | -------------------------------- | ------------------------------- |
-| 1 | Knives: 64 × 272 / 60 × 260 | Small items: 64 × 139.5 / 60 × 127.5 |
-| 2 | Forks: 76 × 222 / 72 × 210 | Teaspoons: 76 × 189.5 / 72 × 177.5 |
-| 3 | Spoons: 76 × 222 / 72 × 210 | Spare: 76 × 189.5 / 72 × 177.5 |
-| 4 | Soup spoons: 76 × 222 / 72 × 210 | Misc: 76 × 189.5 / 72 × 177.5 |
-| 5 | Chopsticks: 64 × 272 / 60 × 260 | Odds and ends: 64 × 139.5 / 60 × 127.5 |
+| 1 | Knives: 71.2 × 272 / 67.2 × 260 | Small items: 71.2 × 139.5 / 67.2 × 127.5 |
+| 2 | Forks: 71.2 × 222 / 67.2 × 210 | Teaspoons: 71.2 × 189.5 / 67.2 × 177.5 |
+| 3 | Spoons: 71.2 × 222 / 67.2 × 210 | Spare: 71.2 × 189.5 / 67.2 × 177.5 |
+| 4 | Soup spoons: 71.2 × 222 / 67.2 × 210 | Misc: 71.2 × 189.5 / 67.2 × 177.5 |
+| 5 | Chopsticks: 71.2 × 272 / 67.2 × 260 | Odds and ends: 71.2 × 139.5 / 67.2 × 127.5 |
 
 All bins are 50 mm tall. Labels are only names; any bin can hold anything that fits.
 
@@ -87,7 +87,6 @@ Stored in the `Params` spreadsheet in `cutlery-tray.FCStd`. Edit them there and 
 | foot_chamfer | 0.6 | Bottom outer edge |
 | bed_max | 250 | Usable bed; longer bins must fit diagonally |
 | front_bezel / back_bezel | 10 / 10 | Front wall of the front bins, back wall of the back bins |
-| outer_w | 60 | Inside width of the two outer columns |
 | knife_l / spoon_l / teaspoon_l / chopstick_l | 230 / 200 / 150 / 250 | Item lengths |
 | item_margin | 10 | Compartment length beyond the item, at the rim |
 | magnet_d / magnet_t / magnet_fit | 6 / 3 / 0.2 | Magnet size and hole allowance |
@@ -119,6 +118,7 @@ Stored in the `Params` spreadsheet in `cutlery-tray.FCStd`. Edit them there and 
 - 2026-10-17: Made the layout symmetrical left to right: both outer columns are 60 mm inside,
   and the knife column matches the chopstick column's lengths.
 - 2026-10-17: Added a 10 mm bezel to the back wall of the back row, matching the front.
+- 2026-10-17: Made all five columns the same width (67.2 mm inside) and dropped `outer_w`.
 - 2026-10-17: Magnets sit in the thick plastic behind the scoops, low on the wall, glued in from
   outside. They need no print pause and are invisible once the bins are together.
 
@@ -126,8 +126,8 @@ Stored in the `Params` spreadsheet in `cutlery-tray.FCStd`. Edit them there and 
 
 - Magnet size: 6 × 3 mm is assumed. Change `magnet_d` and `magnet_t` if you buy different ones,
   and the build checks that the holes still fit.
-- The middle columns are 72 mm inside and the outer ones 60 mm. They could be tuned to how much
-  of each item you have.
+- All columns are 67.2 mm inside. A column can be given its own width with `column(...,
+  width="<param>")` if one item needs more room.
 
 ## Exports
 
