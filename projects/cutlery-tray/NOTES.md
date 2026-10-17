@@ -31,11 +31,11 @@ bin is as long as its mirror twin needs, so every join lines up symmetrically.
 
 | Column | Front bin (outside / inside, mm) | Back bin (outside / inside, mm) |
 | ------ | -------------------------------- | ------------------------------- |
-| 1 | Knives: 71.2 × 272 / 67.2 × 260 | Small items: 71.2 × 139.5 / 67.2 × 127.5 |
-| 2 | Forks: 71.2 × 222 / 67.2 × 210 | Teaspoons: 71.2 × 189.5 / 67.2 × 177.5 |
-| 3 | Spoons: 71.2 × 222 / 67.2 × 210 | Spare: 71.2 × 189.5 / 67.2 × 177.5 |
-| 4 | Soup spoons: 71.2 × 222 / 67.2 × 210 | Misc: 71.2 × 189.5 / 67.2 × 177.5 |
-| 5 | Chopsticks: 71.2 × 272 / 67.2 × 260 | Odds and ends: 71.2 × 139.5 / 67.2 × 127.5 |
+| 1 | Knives: 71.2 × 273 / 65.2 × 260 | Small items: 71.2 × 138.5 / 65.2 × 125.5 |
+| 2 | Forks: 71.2 × 223 / 65.2 × 210 | Teaspoons: 71.2 × 188.5 / 65.2 × 175.5 |
+| 3 | Spoons: 71.2 × 223 / 65.2 × 210 | Spare: 71.2 × 188.5 / 65.2 × 175.5 |
+| 4 | Soup spoons: 71.2 × 223 / 65.2 × 210 | Misc: 71.2 × 188.5 / 65.2 × 175.5 |
+| 5 | Chopsticks: 71.2 × 273 / 65.2 × 260 | Odds and ends: 71.2 × 138.5 / 65.2 × 125.5 |
 
 All bins are 50 mm tall. Labels are only names; any bin can hold anything that fits.
 
@@ -43,15 +43,16 @@ All bins are 50 mm tall. Labels are only names; any bin can hold anything that f
 - **Symmetry:** the knife bin matches the chopstick bin, so it has 260 mm inside for 230 mm knives.
 - **Scoops:** each bin's floor and corner edges have a 15 mm radius, leaving a flat floor strip
   down the middle.
-- **Walls:** 2 mm, with a 2 mm floor. Neighbouring bins make a 4.5 mm double wall, including the
+- **Walls:** 3 mm, with a 2 mm floor. Neighbouring bins make a 6.5 mm double wall, including the
   0.5 mm gap between them.
-- **Hidden joins:** every outside top edge has a 1 mm × 45° bevel. Where two bins meet, the
-  bevels form a small V-groove, so the gap reads as a deliberate line. The inside top edges are
-  rounded 0.6 mm.
+- **Joins:** every outside top edge has a 0.6 mm × 45° bevel, and the inside top edges are
+  rounded 0.6 mm, leaving a 1.8 mm flat on top of each wall. Where two bins meet, the top reads
+  as a solid band about 6.5 mm wide, with a fine V-line (1.7 mm wide, 0.6 mm deep) down the
+  middle that hides the gap.
 - **Corners:** outside vertical corners are rounded 2 mm.
 - **Magnets:** 6 × 3 mm disc magnets (N52 or similar), 42 in total, in 21 pairs. The holes are
   6.2 mm across and 3.2 mm deep, open on the outside of the wall, with their centres 4.5 mm above
-  the bottom. That puts them in the solid plastic behind the scoop, with at least 1.7 mm between
+  the bottom. That puts them in the solid plastic behind the scoop, with at least 2.5 mm between
   each hole and the compartment. The script places them only where two bins share a face: one
   magnet for a shared face under 120 mm long, two up to 260 mm, three beyond. Both sides of each
   pair are at the same spot. Outside faces against the drawer have none.
@@ -79,10 +80,10 @@ Stored in the `Params` spreadsheet in `cutlery-tray.FCStd`. Edit them there and 
 | clearance | 2 | Gap to the drawer on each side |
 | bin_gap | 0.5 | Gap between bins |
 | tray_h | 50 | Bin height |
-| wall / floor | 2.0 / 2.0 | Thicknesses |
+| wall / floor | 3.0 / 2.0 | Thicknesses |
 | scoop_r | 15 | Interior floor-to-wall radius |
 | rim_r | 0.6 | Inside top edge rounding |
-| join_chamfer | 1.0 | Outside top edge bevel |
+| join_chamfer | 0.6 | Outside top edge bevel |
 | corner_r | 2 | Outside vertical corners |
 | foot_chamfer | 0.6 | Bottom outer edge |
 | bed_max | 250 | Usable bed; longer bins must fit diagonally |
@@ -118,7 +119,9 @@ Stored in the `Params` spreadsheet in `cutlery-tray.FCStd`. Edit them there and 
 - 2026-10-17: Made the layout symmetrical left to right: both outer columns are 60 mm inside,
   and the knife column matches the chopstick column's lengths.
 - 2026-10-17: Added a 10 mm bezel to the back wall of the back row, matching the front.
-- 2026-10-17: Made all five columns the same width (67.2 mm inside) and dropped `outer_w`.
+- 2026-10-17: Made all five columns the same width and dropped `outer_w`.
+- 2026-10-17: Walls 3 mm and join bevel 0.6 mm, so the joins read as a solid band about 6.5 mm
+  wide instead of two thin ridges. This costs 2 mm of inside width per column (65.2 mm now).
 - 2026-10-17: Magnets sit in the thick plastic behind the scoops, low on the wall, glued in from
   outside. They need no print pause and are invisible once the bins are together.
 
@@ -126,7 +129,7 @@ Stored in the `Params` spreadsheet in `cutlery-tray.FCStd`. Edit them there and 
 
 - Magnet size: 6 × 3 mm is assumed. Change `magnet_d` and `magnet_t` if you buy different ones,
   and the build checks that the holes still fit.
-- All columns are 67.2 mm inside. A column can be given its own width with `column(...,
+- All columns are 65.2 mm inside. A column can be given its own width with `column(...,
   width="<param>")` if one item needs more room.
 
 ## Exports
