@@ -37,7 +37,8 @@ DEFAULTS = [  # alias, value, description
     ("clearance", 2, "Gap between tray and drawer, each side"),
     ("bin_gap", 0.5, "Gap between neighbouring bins"),
     ("tray_h", 50, "Bin height"),
-    ("wall", 3.0, "Bin wall thickness"),
+    ("side_wall", 3.0, "Left and right bin wall thickness"),
+    ("end_wall", 3.5, "Front and back bin wall thickness, where there is no bezel"),
     ("floor", 2.0, "Floor thickness"),
     ("scoop_r", 15, "Radius of the curved floor-to-wall scoop"),
     ("rim_r", 0.6, "Rounding on the inside top edges"),
@@ -135,14 +136,14 @@ def layout(p):
     """Place every bin. Returns dicts with the bin's rectangle in drawer coordinates."""
     tray_w = p["drawer_w"] - 2 * p["clearance"]
     tray_d = p["drawer_d"] - 2 * p["clearance"]
-    gap, wall = p["bin_gap"], p["wall"]
-    fixed = sum(p[c["width"]] + 2 * wall for c in COLUMNS if c["width"])
+    gap, side, end = p["bin_gap"], p["side_wall"], p["end_wall"]
+    fixed = sum(p[c["width"]] + 2 * side for c in COLUMNS if c["width"])
     flexible = [c for c in COLUMNS if not c["width"]]
     flex_w = (tray_w - fixed - (len(COLUMNS) - 1) * gap) / max(len(flexible), 1)
 
     def walls(col, row):
         last = row == len(COLUMNS[col]["bins"]) - 1
-        return (p["front_bezel"] if row == 0 else wall), (p["back_bezel"] if last else wall)
+        return (p["front_bezel"] if row == 0 else end), (p["back_bezel"] if last else end)
 
     def depth(col, row):
         front_wall, back_wall = walls(col, row)
@@ -151,7 +152,7 @@ def layout(p):
     bins = []
     x = p["clearance"]
     for col_index, col in enumerate(COLUMNS):
-        w = p[col["width"]] + 2 * wall if col["width"] else flex_w
+        w = p[col["width"]] + 2 * side if col["width"] else flex_w
         mirror = len(COLUMNS) - 1 - col_index if SYMMETRIC else col_index
         y = p["clearance"]
         for row_index, b in enumerate(col["bins"]):
@@ -207,7 +208,7 @@ def place_magnets(bins, p):
 def bin_shape(b, p):
     """Model one bin in drawer coordinates. Returns the shape, the compartment cutter, notes."""
     w, d = b["x1"] - b["x0"], b["y1"] - b["y0"]
-    h, wall, floor, r = p["tray_h"], p["wall"], p["floor"], p["scoop_r"]
+    h, wall, floor, r = p["tray_h"], p["side_wall"], p["floor"], p["scoop_r"]
     front, back = b["front_wall"], b["back_wall"]
     notes = []
 
@@ -300,7 +301,7 @@ def build():
                   COLORS[(b["col"] + b["row"]) % len(COLORS)])
 
         w, d = b["x1"] - b["x0"], b["y1"] - b["y0"]
-        rim_w, rim_l = w - 2 * p["wall"], d - b["front_wall"] - b["back_wall"]
+        rim_w, rim_l = w - 2 * p["side_wall"], d - b["front_wall"] - b["back_wall"]
         orientation = print_fit(w, d, p)
         line = (f"{b['label']}: bin {w:.1f} x {d:.1f}, inside {rim_w:.1f} x {rim_l:.1f}, "
                 f"{len(b['magnets'])} magnets, prints {orientation or 'NOT ON THE BED'}")
