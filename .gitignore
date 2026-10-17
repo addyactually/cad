@@ -12,6 +12,5 @@ __pycache__/
 .vscode/
 .idea/
 
-# Claude files (kept local, never committed)
-CLAUDE.md
+# Claude local settings (never committed)
 .claude/
