@@ -41,6 +41,9 @@ lib/                   Python helpers shared across projects
 
 - Check the connection with `get_rpc_status` before starting. If `gui_dispatch` reports `stuck`,
   FreeCAD may need a restart; tell the user rather than retrying blindly.
+- If the RPC server isn't reachable, ask the user to start it: open FreeCAD, pick "MCP Addon" from
+  the Workbench list, then click "Start RPC Server". The addon's install and setup guide is at
+  https://github.com/neka-nat/freecad-mcp/blob/main/docs/installation.md.
 - Prefer `execute_code` with Python for anything beyond a single object. Save the code that builds
   a model to `projects/<project-name>/scripts/` so the model can be rebuilt.
 - Set `include_screenshot: false` for steps that don't change the model's appearance, and pick the
